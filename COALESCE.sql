@@ -1,4 +1,5 @@
 use sm;
+
 CREATE TABLE employee_coalesce_practice (
     emp_id INT,
     emp_name VARCHAR(100),
@@ -107,36 +108,72 @@ select emp_name ,salary,commission,coalesce(salary+commission,0)as `total_income
 select emp_name ,salary,bonus,commission,coalesce(salary + bonus + commission,0)as `total_payout` from employee_coalesce_practice;
 
 #4. Display employee name and annual total income using `(salary + COALESCE(bonus, 0)) * 12`.
-select emp_name ,salary,bonus,commission,coalesce(salary + bonus + commission,0)as `total_payout` from employee_coalesce_practice;
+select emp_name ,coalesce(salary + COALESCE(bonus, 0)) *12 as `annual total` from employee_coalesce_practice;
 
 #5. Display employee name and annual payout using `(salary + COALESCE(bonus, 0) + COALESCE(commission, 0)) * 12`.
+select emp_name ,coalesce(salary + COALESCE(bonus, 0)+ COALESCE(commission, 0)) *12 as `annual payout` from employee_coalesce_practice;
+
 #6. Display employee name and bonus after 10% increment, treating NULL bonus as 0.
+select emp_name ,coalesce(bonus+ bonus*10/100,0) as `update bonus` from employee_coalesce_practice;
+
 #7. Display employee name and commission after 20% increment, treating NULL commission as 0.
+select emp_name ,coalesce(commission+ commission*20/100,0) as `update commission` from employee_coalesce_practice;
+
 #8. Display employee name and salary minus bonus, treating NULL bonus as 0.
+select emp_name ,coalesce(salary-bonus,0) as `update salary` from employee_coalesce_practice;
+
 #9. Display employee name and salary plus double bonus, treating NULL bonus as 0.
+select emp_name ,coalesce(salary+2*bonus,0) as `update salary` from employee_coalesce_practice;
+
 #10. Display employee name and salary plus half commission, treating NULL commission as 0.
+select emp_name ,coalesce(salary+commission/2,0) as `update salary` from employee_coalesce_practice;
 
 ---
 
 ## D. `COALESCE()` with `WHERE`
 
 #1. Display employees where cleaned phone value equals `No Phone`.
+select emp_name ,coalesce(commission,'No Phone') as `cleaned phone` from employee_coalesce_practice;
+
 #2. Display employees where cleaned email value equals `No Email`.
+select emp_name ,coalesce(email,'No Email') as `cleaned Email` from employee_coalesce_practice;
+
 #3. Display employees where cleaned manager value equals `No Manager`.
+select emp_name ,coalesce(manager_name,'No Manager') as `cleaned manager` from employee_coalesce_practice;
+
 #4. Display employees where cleaned bonus value equals 0.
+select emp_name ,coalesce(bonus,0) as `cleaned bonus` from employee_coalesce_practice;
+
 #5. Display employees where cleaned commission value equals 0.
+select emp_name ,coalesce(commission,0) as `cleaned commission` from employee_coalesce_practice;
+
 #6. Display employees where cleaned remarks value equals `No Remarks`.
+select emp_name ,coalesce(remarks,'No Remarks') as `cleaned remarks` from employee_coalesce_practice;
+
 #7. Display employees whose total income using `COALESCE(bonus, 0)` is greater than 65000.
+select emp_name ,coalesce(salary+bonus,0)>65000 as `total income` from employee_coalesce_practice;
+
 #8. Display employees whose total payout using bonus and commission with `COALESCE()` is greater than 70000.
+select emp_name ,coalesce(bonus+commission)>70000 as `cleaned payout` from employee_coalesce_practice;
+
 #9. Display employees whose `COALESCE(phone, email, 'No Contact')` is not equal to `No Contact`.
+ select emp_name ,coalesce(phone, email, 'No Contact') as `cleaned payout` from employee_coalesce_practice;
+
 #10. Display employees whose `COALESCE(commission, bonus, 0)` is greater than 4000.
+ select emp_name ,coalesce(commission, bonus, 0) > 4000 as `cleaned payout` from employee_coalesce_practice;
 
 ---
 
 ## E. `COALESCE()` with `GROUP BY` / Aggregate
 
 #1. Display department-wise total bonus treating NULL bonus as 0.
+select department,coalesce (sum(bonus,0)) as `total bonus ` from employee_coalesce_practice
+group by department
+order by bonus asc;
+
 #2. Display department-wise total commission treating NULL commission as 0.
+ select emp_name ,coalesce(commission, bonus, 0) > 4000 as `cleaned payout` from employee_coalesce_practice;
+
 #3. Display department-wise total payout using salary + bonus + commission with `COALESCE()`.
 #4. Display city-wise total bonus treating NULL bonus as 0.
 #5. Display city-wise total commission treating NULL commission as 0.
