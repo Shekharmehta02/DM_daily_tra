@@ -482,47 +482,192 @@ where status in ('Inactive')
 group by city;
 
 #6. Display department-wise employee count for employees whose salary is greater than 50000.
-#7. Display city-wise employee count for employees whose bonus is greater than 5000.
-#8. Display department-wise total salary for employees who joined after 2020.
-#9. Display city-wise total bonus for employees who joined before 2020.
-#10. Display department-wise average performance score for active employees only.
-#11. Display city-wise maximum salary for active employees only.
-#12. Display department-wise minimum salary for inactive employees only.
-#13. Display job-role-wise average salary for employees from Pune city.
-#14. Display department-wise total working hours for employees from Mumbai city.
-#15. Display status-wise total salary for employees from IT and Finance departments.
+select department, count(*) from employee_salary_report
+where salary > 50000
+group by department;
 
+#7. Display city-wise employee count for employees whose bonus is greater than 5000.
+select city, count(*) from employee_salary_report
+where bonus > 5000
+group by city;
+
+#8. Display department-wise total salary for employees who joined after 2020.
+select department, sum(salary) from employee_salary_report
+where joining_year > 2020
+group by department;
+
+#9. Display city-wise total bonus for employees who joined before 2020.
+select city, sum(salary) from employee_salary_report
+where joining_year < 2020
+group by city;
+
+#10. Display department-wise average performance score for active employees only.
+select department, avg(performance_score) from employee_salary_report
+where status ='active'
+group by department;
+
+#11. Display city-wise maximum salary for active employees only.
+select city, max(salary) from employee_salary_report
+where status ='active'
+group by city;
+
+#12. Display department-wise minimum salary for inactive employees only.
+select department, min(salary) from employee_salary_report
+where status ='Inactive'
+group by department;
+
+#13. Display job-role-wise average salary for employees from Pune city.
+select job_role, avg(salary) from employee_salary_report
+where city ='pune'
+group by job_role;
+
+#14. Display department-wise total working hours for employees from Mumbai city.
+select department, sum(working_hours) from employee_salary_report
+where city ='mumbai'
+group by department;
+
+#15. Display status-wise total salary for employees from IT and Finance departments.
+select status, sum(salary) from employee_salary_report
+where department ='it' or 'Finance'
+group by status;
 ---
 
 ## G. Aggregate Functions with `GROUP BY` + `HAVING`
 
 #1. Display departments having more than 3 employees.
-#2. Display cities having more than 2 employees.
-#3. Display job roles having more than 1 employee.
-#4. Display departments whose total salary is greater than 200000.
-#5. Display departments whose total bonus is greater than 20000.
-#6. Display departments whose total deduction is greater than 8000.
-#7. Display cities whose total salary is greater than 150000.
-#8. Display cities whose total bonus is greater than 15000.
-#9. Display job roles whose average salary is greater than 60000.
-#10. Display departments whose average salary is greater than 55000.
-#11. Display cities whose average salary is greater than 50000.
-#12. Display departments whose minimum salary is greater than 35000.
-#13. Display departments whose maximum salary is greater than 75000.
-#14. Display cities whose maximum bonus is greater than 7000.
-#15. Display statuses whose total salary is greater than 500000.
+select department, count(*) from employee_salary_report
+group by department
+having count(*) >3;
 
+#2. Display cities having more than 2 employees.
+select city, count(*) from employee_salary_report
+group by city
+having count(*) >2;
+
+#3. Display job roles having more than 1 employee.
+select job_role, count(*) from employee_salary_report
+group by job_role
+having count(*) >1;
+
+#4. Display departments whose total salary is greater than 200000.
+select department, sum(salary) from employee_salary_report
+group by department
+having sum(salary) > 200000;
+
+#5. Display departments whose total bonus is greater than 20000.
+select department, sum(bonus) from employee_salary_report
+group by department
+having sum(bonus)>20000;
+
+#6. Display departments whose total deduction is greater than 8000.
+select department, sum(deduction) from employee_salary_report
+group by department
+having sum(deduction)>8000;
+
+#7. Display cities whose total salary is greater than 150000.
+select city, sum(salary) from employee_salary_report
+group by city
+having sum(salary)>150000;
+
+#8. Display cities whose total bonus is greater than 15000.
+select city, sum(bonus) from employee_salary_report
+group by city
+having sum(bonus)>15000;
+
+#9. Display job roles whose average salary is greater than 60000.
+select job_role, avg(salary) from employee_salary_report
+group by job_role
+having avg(salary)>60000;
+
+#10. Display departments whose average salary is greater than 55000.
+select department, avg(salary) from employee_salary_report
+group by department
+having avg(salary)>55000;
+
+#11. Display cities whose average salary is greater than 50000.
+select city, avg(salary) from employee_salary_report
+group by city
+having avg(salary)>50000;
+
+#12. Display departments whose minimum salary is greater than 35000.
+select department, min(salary) from employee_salary_report
+group by department
+having min(salary)>35000;
+
+#13. Display departments whose maximum salary is greater than 75000.
+select department, max(salary) from employee_salary_report
+group by department
+having max(salary)>75000;
+
+#14. Display cities whose maximum bonus is greater than 7000.
+select city, max(bonus) from employee_salary_report
+group by city
+having max(bonus)>7000;
+
+#15. Display statuses whose total salary is greater than 500000.
+select status, sum(salary) from employee_salary_report
+group by status
+having sum(salary)>500000;
 ---
 
 ## H. `WHERE` + `GROUP BY` + `HAVING`
 
 #1. Display departments having more than 2 active employees.
+select department, count(*) from employee_salary_report
+where status='active'
+group by department
+having count(*)>2;
+
 #2. Display cities having more than 1 active employee.
+select city, count(*) from employee_salary_report
+where status='active'
+group by city
+having count(*)>1;
+
 #3. Display departments whose active employee total salary is greater than 200000.
+select department, sum(salary) from employee_salary_report
+where status='active'
+group by department
+having sum(salary)>200000;
+
 #4. Display cities whose active employee total bonus is greater than 10000.
+select city, sum(bonus) from employee_salary_report
+where status='active'
+group by city
+having sum(bonus)>10000;
+
 #5. Display departments whose active employee average salary is greater than 55000.
+select department, avg(salary) from employee_salary_report
+where status='active'
+group by department
+having avg(salary)>55000;
+
 #6. Display cities whose active employee maximum salary is greater than 70000.
+select city, max(salary) from employee_salary_report
+where status='active'
+group by city
+having max(salary)>70000;
+
 #7. Display job roles having more than 1 employee from IT department.
+select job_role, count(*) from employee_salary_report
+where department='It'
+group by job_role
+having count(*)>1;
+
 #8. Display departments whose total net salary is greater than 200000 for active employees.
+select department, sum(salary + bonus) from employee_salary_report
+where status='active'
+group by department
+having sum(salary + bonus)>200000;
+
 #9. Display cities whose average net salary is greater than 50000 for active employees.
+select city, avg(salary + bonus) from employee_salary_report
+where status='active'
+group by city
+having sum(salary + bonus)>50000;
+
 #10. Display departments whose maximum salary after 10% increment is greater than 90000 for active employees.
+select department, max(salary +salary*10/100) from employee_salary_report
+where status='active'
+group by department
+having max(salary +salary*10/100)>90000;
