@@ -167,9 +167,8 @@ select emp_name ,coalesce(bonus+commission)>70000 as `cleaned payout` from emplo
 ## E. `COALESCE()` with `GROUP BY` / Aggregate
 
 #1. Display department-wise total bonus treating NULL bonus as 0.
-select department,coalesce (sum(bonus,0)) as `total bonus ` from employee_coalesce_practice
-group by department
-order by bonus asc;
+select department,coalesce (sum(bonus),0) as `total bonus ` from employee_coalesce_practice
+group by department;
 
 #2. Display department-wise total commission treating NULL commission as 0.
  select emp_name ,coalesce(commission, bonus, 0) > 4000 as `cleaned payout` from employee_coalesce_practice;
