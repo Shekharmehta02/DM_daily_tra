@@ -171,16 +171,39 @@ select department,coalesce (sum(bonus),0) as `total bonus ` from employee_coales
 group by department;
 
 #2. Display department-wise total commission treating NULL commission as 0.
- select emp_name ,coalesce(commission, bonus, 0) > 4000 as `cleaned payout` from employee_coalesce_practice;
+select department ,coalesce(sum(commission), 0)as `total commission` from employee_coalesce_practice
+group by department;
 
 #3. Display department-wise total payout using salary + bonus + commission with `COALESCE()`.
-#4. Display city-wise total bonus treating NULL bonus as 0.
-#5. Display city-wise total commission treating NULL commission as 0.
-#6. Display status-wise total payout using `COALESCE()`.
-#7. Display department-wise average bonus treating NULL bonus as 0.
-#8. Display city-wise average commission treating NULL commission as 0.
-#9. Display department-wise count of employees whose bonus is NULL using `COALESCE()` logic.
-#10. Display city-wise count of employees whose phone is missing using `COALESCE()` logic.
+select department ,coalesce(sum(commission+bonus+salary)) as `total payout` from employee_coalesce_practice
+group by department;
 
+#4. Display city-wise total bonus treating NULL bonus as 0.
+select city ,coalesce(sum(bonus),0) as `total bonus` from employee_coalesce_practice
+group by city;
+
+#5. Display city-wise total commission treating NULL commission as 0.
+select city ,coalesce(sum(commission),0) as `total commission` from employee_coalesce_practice
+group by city;
+
+#6. Display status-wise total payout using `COALESCE()`.
+select status ,coalesce(sum(commission+bonus+salary)) as `total payout` from employee_coalesce_practice
+group by status;
+
+#7. Display department-wise average bonus treating NULL bonus as 0.
+select department ,coalesce (avg(bonus),0) as `avg bonus` from employee_coalesce_practice
+group by department;
+
+#8. Display city-wise average commission treating NULL commission as 0.
+select department ,coalesce (avg(commission),0) as `avg commission` from employee_coalesce_practice
+group by department;
+
+#9. Display department-wise count of employees whose bonus is NULL using `COALESCE()` logic.
+select department ,coalesce (count(bonus),null) as ` count` from employee_coalesce_practice
+group by department;
+
+#10. Display city-wise count of employees whose phone is missing using `COALESCE()` logic.
+select city ,coalesce (count(phone),'missing') as ` count` from employee_coalesce_practice
+group by city;
 ---
 
