@@ -621,6 +621,12 @@ group by department)
 
 select * from dept_sales
 where  totle_sales > (select avg(totle_sales) from dept_sales);
+with  dept_sales as  
+(select department, sum(sale_amount) as totle_sales from employee_sales
+group by department)
+
+select * from dept_sales
+where  totle_sales > (select avg(totle_sales) from dept_sales);
 
 #3. Display product categories where total quantity is greater than average quantity of all categories.
 #4. Display departments where maximum sale amount is greater than overall average sale amount.
