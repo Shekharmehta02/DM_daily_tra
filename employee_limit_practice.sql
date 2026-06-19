@@ -242,4 +242,6 @@ Select *from employee_limit_practice
 order by salary desc
 limit 5;
 
+pura ho gaya
+
 
