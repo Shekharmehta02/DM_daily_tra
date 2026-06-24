@@ -1,3 +1,4 @@
+
 use sm;
 # Practice | SQL | Having 
 
@@ -509,30 +510,124 @@ having sum(bonus) > 5000;
 ---
 ## G. `WHERE` + `GROUP BY` + `HAVING`
 
-#sale_id, emp_id, emp_name, department, city, product_category, sale_amount, quantity, bonus, sale_year, sale_month, status
-
 #1. Display departments having total sale amount greater than 150000 for only Completed records.
+select department, sum(sale_amount) from employee_sales
+where status='completed'
+group by department
+having sum(sale_amount) >150000;
+
 #2. Display cities having count greater than 2 for only Active/Completed sale status.
+select city, count(*) from employee_sales
+where status in ('completed' or 'Active')
+group by city
+having count(*) >2;
+
 #3. Display product categories having total quantity greater than 5 for only year 2024.
+select product_category, sum(quantity) from employee_sales
+where sale_year =2024
+group by product_category
+having sum(quantity) >5;
+
 #4. Display product categories having total quantity greater than 5 for only year 2025.
+select product_category, sum(quantity) from employee_sales
+where sale_year =2025
+group by product_category
+having sum(quantity) >5;
+
 #5. Display departments having average sale amount greater than 50000 for only city Pune.
+select product_category, avg(sale_amount) from employee_sales
+where city ='pune'
+group by product_category
+having avg(sale_amount) >50000;
+
 #6. Display cities having total bonus greater than 10000 for only Finance department.
+select city, sum(bonus) from employee_sales
+where department ='Finance'
+group by city
+having sum(bonus) >10000;
+
 #7. Display departments having total sale amount greater than 100000 for only Laptop category.
+select department, sum(sale_amount)from employee_sales
+where product_category ='Laptop'
+group by department
+having sum(sale_amount) >100000;
+
 #8. Display cities having average sale amount greater than 40000 for only Mobile category.
+select city, avg(sale_amount)from employee_sales
+where product_category ='Mobile'
+group by city
+having avg(sale_amount) >40000;
+
 #9. Display product categories having maximum sale amount greater than 70000 for only Completed records.
+select product_category, max(sale_amount)from employee_sales
+where status ='Completed'
+group by product_category
+having max(sale_amount) >70000;
+
 #10. Display years having total sale amount greater than 300000 for only Completed records.
+select sale_year, sum(sale_amount)from employee_sales
+where status ='Completed'
+group by sale_year
+having sum(sale_amount) >300000;
+
 #11. Display months having total sale amount greater than 50000 for only year 2025.
+select sale_month, sum(sale_amount)from employee_sales
+where sale_year =2025
+group by sale_month
+having sum(sale_amount) >50000;
+
 #12. Display departments having count greater than 1 for only Mumbai city.
+select department, count(*)from employee_sales
+where city ='mumbai'
+group by department
+having count(*) >1;
+
 #13. Display cities having count greater than 1 for only IT department.
+select city, count(*)from employee_sales
+where department ='it'
+group by city
+having count(*) >1;
+
 #14. Display statuses having total sale amount greater than 50000 for only HR department.
+select status, sum(sale_amount) from employee_sales
+where department ='HR'
+group by status
+having sum(sale_amount)  >50000;
+
 #15. Display product categories having average bonus greater than 3000 for only Completed records.
+select product_category, avg(bonus) from employee_sales
+where status ='Completed'
+group by product_category
+having avg(bonus)  >3000;
+
+#sale_id, emp_id, emp_name, department, city, product_category, sale_amount, quantity, bonus, sale_year, sale_month, status
 
 ---
 
 ## H. Interview-Style `HAVING` Questions
 
 #1. Display departments where total sales are greater than average total sales of all departments.
+with  dept_sales as  
+(select department, sum(sale_amount) as totle_sales from employee_sales
+group by department)
+
+select * from dept_sales
+where  totle_sales > (select avg(totle_sales) from dept_sales);
+
 #2. Display cities where average sale amount is greater than overall average sale amount.
+with  dept_sales as  
+(select department, sum(sale_amount) as totle_sales from employee_sales
+group by department)
+
+select * from dept_sales
+where  totle_sales > (select avg(totle_sales) from dept_sales);
+with  dept_sales as  
+(select department, sum(sale_amount) as totle_sales from employee_sales
+group by department)
+
+select * from dept_sales
+where  totle_sales > (select avg(totle_sales) from dept_sales);
+
 #3. Display product categories where total quantity is greater than average quantity of all categories.
 #4. Display departments where maximum sale amount is greater than overall average sale amount.
 #5. Display cities where minimum sale amount is less than overall minimum completed sale amount.
