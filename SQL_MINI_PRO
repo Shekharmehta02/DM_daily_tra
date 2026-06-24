@@ -2,7 +2,7 @@
 -- IMPORTANT: No CSV line has been skipped/cleaned/removed.
 -- raw_row stores the original line exactly as present in the CSV, without the line-break character.
 -- Empty CSV cells are inserted as NULL in parsed columns.
-
+this 9a
 
 this is sql
 DROP TABLE IF EXISTS sales_september_2019_raw;
