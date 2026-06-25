@@ -158,7 +158,7 @@ SELECT
         ELSE 'Not Eligible'
     END AS salary_status
 FROM employee_case_practice;
-
+select * from employee_case_practice;
 #12. Display employee name and salary group as Group 1 if salary is less than 40000, Group 2 if salary is between 40000 and 70000, Group 3 otherwise.
 SELECT
     emp_name,
