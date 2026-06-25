@@ -1,0 +1,998 @@
+use sm;
+
+
+CREATE TABLE employee_case_practice (
+    emp_id INT,
+    emp_name VARCHAR(50),
+    department VARCHAR(30),
+    city VARCHAR(30),
+    job_role VARCHAR(50),
+    salary INT,
+    bonus INT,
+    age INT,
+    experience_years INT,
+    performance_score INT,
+    project_count INT,
+    joining_year INT,
+    work_mode VARCHAR(20),
+    status VARCHAR(20)
+);
+
+INSERT INTO employee_case_practice VALUES
+(101, 'Amit', 'IT', 'Pune', 'Developer', 55000, 5000, 28, 4, 82, 3, 2021, 'Hybrid', 'Active'),
+(102, 'Neha', 'HR', 'Mumbai', 'HR Executive', 42000, 3000, 30, 5, 76, 2, 2020, 'Office', 'Active'),
+(103, 'Rahul', 'Finance', 'Delhi', 'Analyst', 60000, 7000, 32, 6, 88, 4, 2019, 'Remote', 'Active'),
+(104, 'Priya', 'IT', 'Pune', 'Tester', 48000, 4000, 26, 3, 79, 2, 2022, 'Hybrid', 'Active'),
+(105, 'Karan', 'Sales', 'Nagpur', 'Sales Executive', 35000, 2000, 25, 2, 68, 1, 2023, 'Office', 'Inactive'),
+(106, 'Sneha', 'Finance', 'Mumbai', 'Accountant', 52000, 4500, 29, 4, 81, 3, 2021, 'Remote', 'Active'),
+(107, 'Vikas', 'IT', 'Bangalore', 'Developer', 75000, 8000, 35, 8, 91, 5, 2018, 'Hybrid', 'Active'),
+(108, 'Anjali', 'HR', 'Pune', 'Recruiter', 39000, 2500, 27, 3, 72, 2, 2022, 'Office', 'Inactive'),
+(109, 'Rohit', 'Sales', 'Delhi', 'Manager', 68000, 6000, 34, 9, 86, 4, 2017, 'Office', 'Active'),
+(110, 'Meera', 'Finance', 'Mumbai', 'Manager', 82000, 9000, 38, 10, 94, 6, 2016, 'Remote', 'Active'),
+(111, 'Suresh', 'IT', 'Pune', 'Support', 30000, 1500, 24, 1, 65, 1, 2024, 'Hybrid', 'Active'),
+(112, 'Pooja', 'Sales', 'Bangalore', 'Sales Executive', 37000, 2200, 26, 2, 70, 2, 2023, 'Office', 'Active'),
+(113, 'Nitin', 'HR', 'Delhi', 'Manager', 72000, 7500, 36, 11, 89, 5, 2015, 'Office', 'Active'),
+(114, 'Riya', 'IT', 'Mumbai', 'Developer', 64000, 6500, 31, 6, 84, 4, 2020, 'Hybrid', 'Inactive'),
+(115, 'Manish', 'Finance', 'Pune', 'Analyst', 58000, 5500, 33, 7, 83, 3, 2019, 'Remote', 'Active'),
+(116, 'Divya', 'IT', 'Pune', 'Data Engineer', 88000, 9500, 29, 5, 92, 4, 2021, 'Remote', 'Active'),
+(117, 'Jay', 'Finance', 'Delhi', 'Data Analyst', 47000, 3500, 27, 4, 74, 2, 2022, 'Hybrid', 'Active'),
+(118, 'Komal', 'HR', 'Mumbai', 'Trainer', 33000, 1800, 25, 2, 66, 1, 2023, 'Office', 'Inactive'),
+(119, 'Tina', 'Sales', 'Nagpur', 'Team Lead', 62000, 5000, 32, 7, 85, 3, 2019, 'Hybrid', 'Active'),
+(120, 'Aakash', 'IT', 'Bangalore', 'DevOps Engineer', 79000, 8500, 34, 9, 90, 5, 2017, 'Remote', 'Active');
+
+# Chunk 1: Questions 1 to 100
+---
+
+## A. Basic Salary Category Using `CASE`
+
+#1. Display employee name, salary, and salary category as High if salary is greater than 70000, otherwise Low.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary > 70000 THEN 'High Salary'
+        ELSE 'Low Salary'
+    END AS salary_category
+FROM employee_case_practice;
+
+#2. Display employee name, salary, and salary category as High if salary is greater than or equal to 70000, otherwise Low.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary >= 70000 THEN 'High Salary'
+        ELSE 'Low Salary'
+    END AS salary_category
+FROM employee_case_practice;
+
+#3. Display employee name, salary, and salary category as Low if salary is less than 40000, otherwise Good.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary < 40000 THEN 'Low Salary'
+        ELSE 'Good'
+    END AS salary_category
+FROM employee_case_practice;
+
+#4. Display employee name, salary, and salary category as Medium if salary is between 40000 and 70000, otherwise Other.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary between  40000 and 70000 THEN 'Medium Salary'
+        ELSE 'Other'
+    END AS salary_category
+FROM employee_case_practice;
+
+#5. Display employee name, salary, and salary category as Very High if salary is greater than 80000, High if greater than 60000, otherwise Normal.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary > 80000 THEN 'Very High Salary'
+        WHEN salary >60000 THEN 'High Salary'
+        ELSE 'Normal'
+    END AS salary_category
+FROM employee_case_practice;
+
+#6. Display employee name, salary, and salary level as Grade A if salary is above 75000, Grade B if salary is above 55000, else Grade C.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary > 75000 THEN 'Grade A'
+        WHEN salary > 55000 THEN 'Grade B'
+        ELSE 'Grade C'
+    END AS salary_level
+FROM employee_case_practice;
+
+#7. Display employee name, salary, and salary band as Premium if salary is above 80000, Standard if salary is above 50000, else Basic.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary > 80000 THEN 'Premium '
+        WHEN salary > 50000 THEN 'Standard'
+        ELSE 'Basic'
+    END AS salary_band
+FROM employee_case_practice;
+
+#8. Display employee name, salary, and salary remark as Excellent Pay if salary is greater than 75000, Average Pay if salary is greater than 45000, else Low Pay.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary > 75000 THEN 'Excellent Pay '
+        WHEN salary > 45000 THEN 'Average Pay '
+        ELSE 'Low Pay'
+    END AS salary_remark
+FROM employee_case_practice;
+
+#9. Display employee name, salary, and salary type as Senior Pay if salary is greater than 65000, Junior Pay otherwise.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary > 65000 THEN 'Senior Pay '
+        ELSE 'Junior Pay'
+    END AS salary_type
+FROM employee_case_practice;
+
+#10. Display employee name, salary, and salary flag as Above Average if salary is greater than 60000, otherwise Below Average.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary > 60000 THEN 'Average salary'
+        ELSE 'Below Average salary'
+    END AS salary_flag
+FROM employee_case_practice;
+
+#11. Display employee name and salary status as Eligible if salary is greater than 50000, otherwise Not Eligible.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary > 50000 THEN 'Eligible'
+        ELSE 'Not Eligible'
+    END AS salary_status
+FROM employee_case_practice;
+
+#12. Display employee name and salary group as Group 1 if salary is less than 40000, Group 2 if salary is between 40000 and 70000, Group 3 otherwise.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary < 40000 THEN 'Group 1'
+		WHEN salary between  40000  and 70000 THEN 'Group 2'
+        ELSE ' Group 3'
+    END AS salary_group
+FROM employee_case_practice;
+
+#13. Display employee name and pay category as Low Salary if salary is below 45000, Mid Salary if below 70000, else High Salary.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary < 45000 THEN 'Low Salary'
+		WHEN salary < 70000 THEN 'Mid Salary'
+        ELSE 'High Salary'
+    END AS pay_category
+FROM employee_case_practice;
+
+#14. Display employee name and salary comparison as Exact 55000 if salary is 55000, otherwise Different Salary.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary = 55000 THEN 'Exact 55000'
+        ELSE 'Different Salary'
+    END AS salary_comparison
+FROM employee_case_practice;
+
+#15. Display employee name and salary remark as Not Available if salary is NULL, otherwise Available.
+SELECT
+    emp_name,
+    salary,
+    CASE
+        WHEN salary = '' THEN 'Not Available'
+        ELSE ' Available'
+    END AS salary_remark
+FROM employee_case_practice;
+---
+
+## B. Bonus Category Using `CASE`
+
+#1. Display employee name, bonus, and bonus category as High Bonus if bonus is greater than 7000, otherwise Low Bonus.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus > 7000 THEN 'High Bonus'
+        ELSE ' Low Bonus'
+    END AS bonus_category
+FROM employee_case_practice;
+
+#2. Display employee name, bonus, and bonus category as Medium Bonus if bonus is between 3000 and 7000, otherwise Other.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus between 3000 and 7000 THEN 'Medium Bonus'
+        ELSE ' Other'
+    END AS bonus_category
+FROM employee_case_practice;
+
+#3. Display employee name, bonus, and bonus level as Excellent if bonus is greater than 8000, Good if bonus is greater than 5000, else Normal.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus > 8000 THEN 'Excellent'
+		WHEN bonus > 5000 THEN 'Good'
+        ELSE ' Normal'
+    END AS bonus_level
+FROM employee_case_practice;
+
+#4. Display employee name, bonus, and bonus status as Eligible for Reward if bonus is greater than 6000, otherwise Not Eligible.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus > 6000 THEN 'Eligible for Reward'
+        ELSE ' Not Eligible'
+        END AS bonus_status
+		FROM employee_case_practice;
+
+#5. Display employee name, bonus, and bonus remark as Very Low if bonus is less than 2500, otherwise Acceptable.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus < 2500 THEN 'Low bonus'
+        ELSE ' Acceptable'
+        END AS bonus_remark
+		FROM employee_case_practice;
+
+#6. Display employee name, bonus, and bonus flag as Above 5000 if bonus is greater than 5000, otherwise 5000 or Below.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus > 5000 THEN '  greater than 5000'
+        ELSE ' 5000 or Below'
+        END AS bonus_flag
+		FROM employee_case_practice;
+
+#7. Display employee name, bonus, and bonus type as Fixed Bonus if bonus equals 5000, otherwise Variable Bonus.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus = 5000 THEN 'Fixed Bonus '
+        ELSE 'Variable Bonus.'
+        END AS bonus_type
+		FROM employee_case_practice;
+
+#8. Display employee name, bonus, and bonus category as Bronze if bonus is below 3000, Silver if bonus is below 6000, Gold otherwise.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus < 3000 THEN 'Bronze '
+		WHEN bonus < 6000 THEN 'Silver '
+        ELSE 'Gold'
+        END AS bonus_category
+		FROM employee_case_practice;
+
+#9. Display employee name, bonus, and bonus category as Low if bonus is less than 3000, Medium if bonus is between 3000 and 7000, High if greater than 7000.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus < 3000 THEN 'Low '
+		WHEN bonus between 3000 and 7000 THEN 'Medium '
+		WHEN bonus > 7000 THEN 'High '
+        ELSE 'Normal'
+        END AS bonus_category
+		FROM employee_case_practice;
+
+#10. Display employee name and bonus availability as Missing if bonus is NULL, otherwise Present.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus < null THEN 'Missing '
+        ELSE 'Present'
+        END AS bonus_availability
+		FROM employee_case_practice;
+
+#11. Display employee name and bonus range as Range 1 if bonus is below 3000, Range 2 if bonus is below 6000, Range 3 otherwise.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus < 3000 THEN 'Range 1 '
+        WHEN bonus < 6000 THEN 'Range 2 '
+        ELSE 'Range 3'
+        END AS bonus_range
+		FROM employee_case_practice;
+
+#12. Display employee name and bonus grade as A if bonus is above 8000, B if above 5000, else C.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus > 8000 THEN ' A '
+        WHEN bonus > 5000 THEN 'B '
+        ELSE 'C'
+        END AS bonus_grade
+		FROM employee_case_practice;
+
+#13. Display employee name and bonus condition as Bonus More Than Salary 10 Percent if bonus is greater than salary * 0.10, otherwise Normal.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus > salary*10/100 THEN ' bonus More Than Salary 10 Percent '
+        ELSE 'Normal'
+        END AS bonus_condition
+		FROM employee_case_practice;
+
+#14. Display employee name and bonus condition as Bonus Less Than Salary 5 Percent if bonus is less than salary * 0.05, otherwise Normal.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus < salary*5/100 THEN ' bonus is less than salary  '
+        ELSE 'Normal'
+        END AS bonus_condition
+		FROM employee_case_practice;
+
+#15. Display employee name and bonus label as Good Bonus if bonus is greater than average bonus using subquery, otherwise Normal Bonus.
+SELECT
+    emp_name,
+    bonus,
+    CASE
+        WHEN bonus < (select avg(bonus) from employee_case_practice )  THEN ' Good Bonus '
+        ELSE 'Normal Bonus'
+        END AS bonus_label
+		FROM employee_case_practice;
+---
+
+## C. Age Category Using `CASE`
+
+#1. Display employee name, age, and age category as Young if age is less than 30, otherwise Senior.
+SELECT
+    emp_name,
+    age,
+    CASE
+        WHEN age < 30  THEN 'Young'
+        ELSE 'Senior'
+        END AS age_category
+		FROM employee_case_practice;
+
+#2. Display employee name, age, and age group as Below 25, 25 to 30, 31 to 35, Above 35.
+SELECT
+    emp_name,
+    age,
+    CASE
+        WHEN age < 25  THEN '1'
+        WHEN age between 25 and 30  THEN '2'
+        WHEN age between 31 and 35 THEN '3'
+        WHEN age > 35  THEN '4'
+        ELSE 'Normal'
+        END AS age_group
+		FROM employee_case_practice;
+
+#3. Display employee name, age, and age status as Fresher Age if age is less than 26, otherwise Experienced Age.
+SELECT
+    emp_name,
+    age,
+    CASE
+        WHEN age < 26  THEN 'Fresher age'
+        ELSE 'Experienced Age'
+        END AS age_status
+		FROM employee_case_practice;
+
+#4. Display employee name, age, and age label as Mid Age if age is between 30 and 35, otherwise Other.
+SELECT
+    emp_name,
+    age,
+    CASE
+        WHEN age between  30 and 35  THEN 'Mid age'
+        ELSE 'Other Age'
+        END AS age_label
+		FROM employee_case_practice;
+
+#5. Display employee name, age, and age band as Junior if age is below 28, Mid if below 35, Senior otherwise.
+SELECT
+    emp_name,
+    age,
+    CASE
+        WHEN age > 28 THEN 'Junior age'
+		WHEN age  > 35 THEN 'Mid age'
+        ELSE 'Senior Age'
+        END AS age_band
+		FROM employee_case_practice;
+
+#6. Display employee name, age, and age flag as Exact 30 if age equals 30, otherwise Not 30.
+SELECT
+    emp_name,
+    age,
+    CASE
+        WHEN age > 28 THEN 'Junior age'
+		WHEN age  > 35 THEN 'Mid age'
+        ELSE 'Senior Age'
+        END AS age_band
+		FROM employee_case_practice;
+
+#7. Display employee name, age, and age type as Above Average Age if age is greater than average age using subquery, otherwise Below Average Age.
+SELECT
+    emp_name,
+    age,
+    CASE
+        WHEN age > (select avg(age) from employee_case_practice)THEN 'greater than average age'
+        ELSE 'Below Average Age'
+        END AS age_type
+		FROM employee_case_practice;
+
+#8. Display employee name, age, and age group as Less Than 25, 25 Plus, 30 Plus, 35 Plus.
+SELECT
+    emp_name,
+    age,
+    CASE
+        WHEN age < 25 THEN 'Less Than 25'
+		WHEN age between 25 and 30 THEN '25 Plus'
+        WHEN age >  30 and 35 THEN '30 Plus,'
+		WHEN age > 35 THEN '35 Plus'
+        ELSE 'Normal'
+        END AS age_group
+		FROM employee_case_practice;
+
+#9. Display employee name and retirement flag as Long Time Left if age is below 35, otherwise Plan Ahead.
+SELECT
+    emp_name,
+    age,
+    CASE
+        WHEN age > 35  THEN 'Long Time Left '
+        ELSE 'Plan Ahead'
+        END AS retirement_flag
+		FROM employee_case_practice;
+
+#10. Display employee name and age remark as Young Active if age below 30 and status Active, otherwise Other.
+SELECT
+    emp_name,
+    age,
+    CASE
+        WHEN age < 30  THEN 'Young Active'
+        ELSE 'Other'
+        END AS age_remark
+		FROM employee_case_practice;
+---
+
+## D. Experience Category Using `CASE`
+
+1. Display employee name, experience years, and experience category as Junior if experience is less than 3, otherwise Experienced.
+2. Display employee name, experience years, and level as Beginner if experience <= 2, Intermediate if experience <= 5, Senior otherwise.
+3. Display employee name, experience years, and grade as L1 if experience less than 3, L2 if experience less than 7, L3 otherwise.
+4. Display employee name, experience years, and experience status as High Experience if experience is greater than 8, otherwise Normal.
+5. Display employee name, experience years, and experience label as Exact 5 Years if experience equals 5, otherwise Other.
+6. Display employee name, experience years, and category as Fresh if experience below 2, Skilled if experience below 6, Expert otherwise.
+7. Display employee name, experience years, and seniority as Junior, Mid Level, Senior Level, Lead Level based on experience ranges.
+8. Display employee name and experience remark as Promotion Eligible if experience is greater than 5, otherwise Not Eligible.
+9. Display employee name and experience comparison as Above Average Experience if experience is greater than average experience, otherwise Below Average.
+10. Display employee name and experience flag as High Experience Active if experience greater than 5 and status Active, otherwise Other.
+
+---
+
+## E. Performance Score Category Using `CASE`
+
+1. Display employee name, performance score, and performance category as Excellent if score >= 90, Good if score >= 80, Average if score >= 70, else Poor.
+2. Display employee name, performance score, and result as Pass if performance score >= 70, otherwise Fail.
+3. Display employee name, performance score, and rating as 5 Star if score >= 90, 4 Star if score >= 80, 3 Star if score >= 70, else 2 Star.
+4. Display employee name, performance score, and improvement flag as Needs Improvement if score < 70, otherwise Good.
+5. Display employee name, performance score, and bonus eligibility as Eligible if score >= 85, otherwise Not Eligible.
+6. Display employee name, performance score, and promotion chance as High if score >= 90, Medium if score >= 80, Low otherwise.
+7. Display employee name, performance score, and performance group as Top Performer if score > 90, Strong Performer if score > 80, Average Performer otherwise.
+8. Display employee name, performance score, and remark as Excellent Active if score >= 85 and status Active, otherwise Review.
+9. Display employee name and score status as Above Average Score if score is greater than average performance score, otherwise Below Average Score.
+10. Display employee name and performance alert as Critical if performance score below 70 and status Active, otherwise Normal.
+
+---
+
+## F. Department-Based `CASE`
+
+1. Display employee name, department, and department type as Technical if department is IT, otherwise Non-Technical.
+2. Display employee name, department, and department group as Business if department is Sales or Finance, otherwise Support.
+3. Display employee name, department, and team category as Revenue Team for Sales, Cost Team for HR, Tech Team for IT, Finance Team for Finance.
+4. Display employee name, department, and department code as D1 for IT, D2 for HR, D3 for Finance, D4 for Sales.
+5. Display employee name, department, and department priority as High for IT and Finance, Medium for Sales, Low for HR.
+6. Display employee name, department, and domain as Banking if Finance, Technology if IT, People if HR, Customer if Sales.
+7. Display employee name and department flag as Core Team if department in IT and Finance, otherwise Non-Core.
+8. Display employee name and department label as Department Available if department is not NULL, otherwise Missing.
+9. Display employee name and department region as West if department is IT, North if Finance, South if Sales, Central if HR.
+10. Display employee name and department category as Important if department is not HR, otherwise HR Team.
+
+---
+
+## G. City-Based `CASE`
+
+1. Display employee name, city, and city zone as West if city is Pune or Mumbai, North if Delhi, South if Bangalore, Other otherwise.
+2. Display employee name, city, and metro flag as Metro if city is Mumbai, Delhi, or Bangalore, otherwise Non-Metro.
+3. Display employee name, city, and location type as Office Hub if city is Pune or Mumbai, otherwise Field Location.
+4. Display employee name, city, and city code as P for Pune, M for Mumbai, D for Delhi, B for Bangalore, N for Nagpur.
+5. Display employee name, city, and travel allowance as 5000 for Mumbai, 4000 for Delhi, 3000 for Pune, 2000 otherwise.
+6. Display employee name and city status as Same as Office if city is Pune, otherwise Different City.
+7. Display employee name and city group as Maharashtra if city in Pune, Mumbai, Nagpur, otherwise Other State.
+8. Display employee name and city priority as High if city is Pune or Mumbai, Medium if Delhi, Low otherwise.
+9. Display employee name and city remark as Remote Friendly City if city is Bangalore or Pune, otherwise Normal.
+10. Display employee name and city availability as City Available if city is not NULL, otherwise Missing City.
+
+---
+
+## H. Job Role-Based `CASE`
+
+1. Display employee name, job role, and role type as Technical Role if job role contains Developer or Engineer, otherwise Non-Technical.
+2. Display employee name, job role, and management flag as Manager if job role contains Manager, otherwise Staff.
+3. Display employee name, job role, and analyst flag as Analyst Role if job role contains Analyst, otherwise Other Role.
+4. Display employee name, job role, and role group as Engineering for Developer/Data Engineer/DevOps Engineer, Analytics for Analyst/Data Analyst, Business for Manager/Sales Executive, HR for HR Executive/Recruiter/Trainer.
+5. Display employee name, job role, and role code as DEV for Developer, MGR for Manager, ANA for Analyst, HR for HR roles, OTH otherwise.
+6. Display employee name and role seniority as Senior Role if job role contains Manager or Lead, otherwise Regular Role.
+7. Display employee name and role category as Data Role if job role contains Data, otherwise Non-Data Role.
+8. Display employee name and role category as Support Role if job role is Support, otherwise Other.
+9. Display employee name and role availability as Role Available if job role is not NULL, otherwise Missing Role.
+10. Display employee name and role label as Executive Role if job role contains Executive, otherwise Non-Executive.
+
+---
+
+## I. Status-Based `CASE`
+
+1. Display employee name, status, and employee status label as Working if status is Active, otherwise Not Working.
+2. Display employee name, status, and status code as A for Active, I for Inactive.
+3. Display employee name, status, and access flag as Access Allowed if Active, otherwise Access Blocked.
+4. Display employee name, status, and payroll flag as Process Payroll if Active, otherwise Hold Payroll.
+5. Display employee name, status, and review flag as Review Needed if Inactive, otherwise No Review.
+6. Display employee name and active message as Currently Active if status Active, otherwise Not Active.
+7. Display employee name and final status as Active Employee if status Active and performance score >= 70, otherwise Check.
+8. Display employee name and inactive reason as Need Follow Up if status Inactive, otherwise No Follow Up.
+9. Display employee name and employment status as Valid if status is not NULL, otherwise Missing Status.
+10. Display employee name and status group as Productive if Active, otherwise Non-Productive.
+
+---
+
+## J. Work Mode-Based `CASE`
+
+1. Display employee name, work mode, and work type as Work From Home if Remote, Office Work if Office, Flexible if Hybrid.
+2. Display employee name, work mode, and allowance as 3000 for Remote, 2000 for Hybrid, 1000 for Office.
+3. Display employee name, work mode, and travel need as No Travel for Remote, Partial Travel for Hybrid, Daily Travel for Office.
+4. Display employee name and remote flag as Remote Employee if work_mode is Remote, otherwise Non-Remote.
+5. Display employee name and office flag as Office Employee if work_mode is Office, otherwise Non-Office.
+6. Display employee name and hybrid flag as Hybrid Employee if work_mode is Hybrid, otherwise Non-Hybrid.
+7. Display employee name and flexibility as High if Remote, Medium if Hybrid, Low if Office.
+8. Display employee name and work mode code as R for Remote, H for Hybrid, O for Office.
+9. Display employee name and work mode status as Valid Mode if work_mode is not NULL, otherwise Missing Mode.
+10. Display employee name and remote benefit as Eligible if work_mode in Remote or Hybrid, otherwise Not Eligible.
+
+---
+
+## K. Project Count-Based `CASE`
+
+1. Display employee name, project count, and workload as High if project_count >= 5, Medium if project_count >= 3, Low otherwise.
+2. Display employee name, project count, and availability as Available if project_count <= 2, otherwise Busy.
+3. Display employee name, project count, and project label as Single Project if project_count = 1, Multiple Projects otherwise.
+4. Display employee name, project count, and project grade as A if project_count >= 5, B if project_count >= 3, else C.
+5. Display employee name and assignment status as No Project if project_count = 0, Assigned otherwise.
+6. Display employee name and load status as Overloaded if project_count > 4 and performance_score < 80, otherwise Normal.
+7. Display employee name and project remark as Good Capacity if project_count <= 3 and status Active, otherwise Review.
+8. Display employee name and project flag as High Allocation if project_count >= average project_count, otherwise Low Allocation.
+9. Display employee name and delivery risk as Risk if project_count > 4 and experience_years < 5, otherwise No Risk.
+10. Display employee name and project handling status as Can Handle More if project_count < 3, otherwise Fully Loaded.
+
+---
+
+## L. Joining Year-Based `CASE`
+
+1. Display employee name, joining year, and joining category as Old Employee if joining_year < 2020, otherwise New Employee.
+2. Display employee name, joining year, and batch as 2015-2018 Batch, 2019-2021 Batch, 2022-2024 Batch.
+3. Display employee name, joining year, and tenure group as Long Tenure if joining_year <= 2018, Medium Tenure if joining_year <= 2021, Short Tenure otherwise.
+4. Display employee name and joining status as Recent Joiner if joining_year >= 2022, otherwise Existing Employee.
+5. Display employee name and loyalty flag as Loyal if joining_year <= 2018 and status Active, otherwise Normal.
+6. Display employee name and experience from joining year as Experienced Joiner if joining_year < 2020, otherwise New Joiner.
+7. Display employee name and joining code as OLD if joining_year < 2020, MID if joining_year between 2020 and 2022, NEW otherwise.
+8. Display employee name and old employee bonus flag as Eligible if joining_year <= 2019, otherwise Not Eligible.
+9. Display employee name and joining validation as Valid Year if joining_year is not NULL, otherwise Missing Year.
+10. Display employee name and service status as Long Service if 2025 - joining_year > 5, otherwise Short Service.
+
+---
+
+## M. `CASE` with Arithmetic Calculations
+
+1. Display employee name and salary after applying 10% increment for Active employees and 5% increment for Inactive employees.
+2. Display employee name and bonus after applying 20% increase for performance score above 85, otherwise 10% increase.
+3. Display employee name and final salary where IT employees get salary + 5000 and others get salary + 2000.
+4. Display employee name and final bonus where Finance employees get bonus + 3000 and others get bonus + 1000.
+5. Display employee name and adjusted salary where Remote employees get salary + 3000, Hybrid + 2000, Office + 1000.
+6. Display employee name and revised salary where salary below 40000 gets 20% increment, salary below 70000 gets 10% increment, others get 5% increment.
+7. Display employee name and revised bonus where bonus below 3000 gets 30% increment, bonus below 6000 gets 20% increment, others get 10% increment.
+8. Display employee name and net pay where Active employees get salary + bonus, Inactive employees get salary only.
+9. Display employee name and final payout where performance score >= 90 gets salary + bonus + 5000, score >= 80 gets salary + bonus + 3000, otherwise salary + bonus.
+10. Display employee name and yearly payout using salary and bonus, but add 10000 yearly reward for Active employees.
+
+---
+
+## N. `CASE` with `WHERE`
+
+1. Display active employees with salary category using CASE.
+2. Display inactive employees with performance category using CASE.
+3. Display IT employees with salary grade using CASE.
+4. Display Finance employees with bonus category using CASE.
+5. Display Pune employees with work mode category using CASE.
+6. Display Mumbai employees with age group using CASE.
+7. Display employees with salary greater than 50000 and show performance grade using CASE.
+8. Display employees with bonus greater than 5000 and show department type using CASE.
+9. Display employees with joining_year after 2020 and show new joiner category using CASE.
+10. Display employees with work_mode Remote and show salary category using CASE.
+11. Display employees with performance score greater than 80 and show promotion eligibility using CASE.
+12. Display employees with experience greater than 5 and show seniority using CASE.
+13. Display employees from IT or Finance department and show core team flag using CASE.
+14. Display employees from Pune or Mumbai city and show city region using CASE.
+15. Display employees whose name starts with A and show salary category using CASE.
+16. Display employees whose job_role contains Manager and show manager category using CASE.
+17. Display employees whose job_role contains Analyst and show analyst category using CASE.
+18. Display employees whose salary is between 40000 and 70000 and show salary band using CASE.
+19. Display employees whose bonus is between 3000 and 7000 and show bonus band using CASE.
+20. Display employees whose age is less than 30 and show age group using CASE.
+
+---
+
+## O. `CASE` with `ORDER BY`
+
+1. Display employees and sort them using CASE so IT comes first, then Finance, then HR, then Sales.
+2. Display employees and sort them using CASE so Active employees come first.
+3. Display employees and sort them using CASE so Remote employees come first, then Hybrid, then Office.
+4. Display employees and sort them using CASE so High salary employees appear first.
+5. Display employees and sort them using CASE so Managers appear first.
+6. Display employees and sort them using CASE so Pune employees appear first.
+7. Display employees and sort them using CASE so performance score Excellent category appears first.
+8. Display employees and sort them by salary category created using CASE.
+9. Display employees and sort them by experience category created using CASE.
+10. Display employees and sort them by joining batch created using CASE.
+
+---
+
+## P. `CASE` with `GROUP BY`
+
+1. Group employees by salary category using CASE and count employees in each category.
+2. Group employees by bonus category using CASE and count employees in each category.
+3. Group employees by age group using CASE and count employees in each group.
+4. Group employees by experience level using CASE and count employees in each level.
+5. Group employees by performance category using CASE and count employees in each category.
+6. Group employees by city zone using CASE and count employees in each zone.
+7. Group employees by department type using CASE and count employees in each type.
+8. Group employees by work mode type using CASE and count employees in each type.
+9. Group employees by joining batch using CASE and count employees in each batch.
+10. Group employees by role type using CASE and count employees in each role type.
+11. Group employees by salary category using CASE and calculate average salary.
+12. Group employees by bonus category using CASE and calculate total bonus.
+13. Group employees by age group using CASE and calculate average age.
+14. Group employees by experience level using CASE and calculate maximum salary.
+15. Group employees by performance category using CASE and calculate minimum salary.
+16. Group employees by city zone using CASE and calculate total salary.
+17. Group employees by department type using CASE and calculate average performance score.
+18. Group employees by work mode type using CASE and calculate total bonus.
+19. Group employees by joining batch using CASE and calculate average experience.
+20. Group employees by role type using CASE and calculate average salary.
+
+---
+
+## Q. `CASE` with Aggregates
+
+1. Count employees with High Salary and Low Salary using CASE inside COUNT or SUM.
+2. Count Active and Inactive employees using CASE.
+3. Count Remote, Office, and Hybrid employees using CASE.
+4. Count employees department-wise using CASE for Active employees only.
+5. Count employees city-wise using CASE for Inactive employees only.
+6. Calculate total salary of Active employees and Inactive employees separately using CASE.
+7. Calculate total bonus of IT and Non-IT employees separately using CASE.
+8. Calculate average salary of Remote and Non-Remote employees using CASE.
+9. Calculate average bonus of Managers and Non-Managers using CASE.
+10. Calculate maximum salary of Active employees using CASE.
+
+---
+
+## Q. `CASE` with Aggregates
+
+## Continued
+
+1. Calculate minimum salary of Inactive employees using CASE.
+2. Calculate total salary for Pune, Mumbai, and Other cities separately using CASE.
+3. Calculate total bonus for IT, Finance, HR, and Sales separately using CASE.
+4. Calculate count of employees in each performance category using CASE.
+5. Calculate average salary for high performers and normal performers using CASE.
+6. Calculate total bonus for employees with performance score greater than or equal to 85 using CASE.
+7. Calculate count of employees whose joining year is before 2020 and after or equal to 2020 using CASE.
+8. Calculate total project count for Active and Inactive employees separately using CASE.
+9. Calculate average experience for Remote and Office employees separately using CASE.
+10. Calculate maximum performance score for IT and Finance employees separately using CASE.
+
+---
+
+## R. `CASE` with `HAVING`
+
+1. Group employees by salary category using CASE and display only categories having count greater than 3.
+2. Group employees by bonus category using CASE and display only categories having total bonus greater than 20000.
+3. Group employees by age group using CASE and display only age groups having average salary greater than 50000.
+4. Group employees by experience level using CASE and display only levels having count greater than 2.
+5. Group employees by performance category using CASE and display only categories having average performance score greater than 80.
+6. Group employees by city zone using CASE and display only zones having total salary greater than 150000.
+7. Group employees by department type using CASE and display only types having average salary greater than 55000.
+8. Group employees by work mode category using CASE and display only categories having count greater than 3.
+9. Group employees by joining batch using CASE and display only batches having average experience greater than 5.
+10. Group employees by role type using CASE and display only role types having maximum salary greater than 70000.
+
+---
+
+## S. `CASE` with `WHERE` + `GROUP BY`
+
+1. For Active employees, group by salary category using CASE and count employees.
+2. For Inactive employees, group by salary category using CASE and count employees.
+3. For IT employees, group by performance category using CASE and count employees.
+4. For Finance employees, group by bonus category using CASE and count employees.
+5. For Pune employees, group by work mode category using CASE and count employees.
+6. For Mumbai employees, group by age group using CASE and count employees.
+7. For employees joined after 2020, group by experience category using CASE and count employees.
+8. For employees with salary greater than 50000, group by department type using CASE and count employees.
+9. For employees with performance score greater than 80, group by promotion eligibility using CASE and count employees.
+10. For employees with bonus greater than 5000, group by bonus category using CASE and count employees.
+
+---
+
+## T. `CASE` with `WHERE` + `GROUP BY` + `HAVING`
+
+1. For Active employees, group by salary category using CASE and display categories having count greater than 2.
+2. For Active employees, group by performance category using CASE and display categories having average salary greater than 60000.
+3. For IT employees, group by salary category using CASE and display categories having total bonus greater than 10000.
+4. For Finance employees, group by experience category using CASE and display categories having average performance score greater than 80.
+5. For Pune employees, group by salary category using CASE and display categories having total salary greater than 100000.
+6. For Remote employees, group by department type using CASE and display categories having count greater than 2.
+7. For employees joined after 2020, group by joining category using CASE and display categories having total bonus greater than 10000.
+8. For employees with salary greater than 50000, group by performance category using CASE and display categories having count greater than 2.
+9. For employees with bonus greater than 4000, group by bonus category using CASE and display categories having average salary greater than 60000.
+10. For employees with experience greater than 5, group by seniority category using CASE and display categories having maximum salary greater than 75000.
+
+---
+
+## U. `CASE` with `UPDATE` Scenario Questions
+
+1. Write a query to update salary by 10% for IT employees and 5% for other employees using CASE.
+2. Write a query to update bonus by 20% for high performers and 10% for others using CASE.
+3. Write a query to update work_mode to Remote for IT employees and Office for HR employees using CASE.
+4. Write a query to update status to Active if performance_score is greater than 70, otherwise Inactive using CASE.
+5. Write a query to update bonus to 10000 for employees scoring above 90, 7000 for above 80, otherwise 3000.
+6. Write a query to update department names using CASE: IT to Technology, HR to Human Resource, Finance to Accounts.
+7. Write a query to update city names using CASE: Pune to PUNE_CITY, Mumbai to MUMBAI_CITY, Delhi to DELHI_CITY.
+8. Write a query to update job_role using CASE: Developer to Software Developer, Analyst to Business Analyst, Manager to Team Manager.
+9. Write a query to update salary based on experience: +15000 for experience greater than 8, +10000 for greater than 5, +5000 otherwise.
+10. Write a query to update bonus based on project_count: +3000 if project_count greater than or equal to 5, +2000 if greater than or equal to 3, +1000 otherwise.
+
+---
+
+## V. `CASE` with `INSERT SELECT` Scenario Questions
+
+1. Insert employee name, salary, and salary category into another table using CASE.
+2. Insert employee name, bonus, and bonus category into another table using CASE.
+3. Insert employee name, performance score, and performance grade into another table using CASE.
+4. Insert employee name, department, and department type into another table using CASE.
+5. Insert employee name, city, and city zone into another table using CASE.
+6. Insert employee name, work mode, and work mode category into another table using CASE.
+7. Insert employee name, joining year, and joining batch into another table using CASE.
+8. Insert employee name, age, and age group into another table using CASE.
+9. Insert employee name, job role, and role type into another table using CASE.
+10. Insert employee name, experience years, and experience level into another table using CASE.
+
+---
+
+## W. `CASE` with `JOIN` Scenario Questions
+
+1. Create department category using CASE after joining employee and department table.
+2. Create salary category using CASE after joining employee and salary table.
+3. Create project allocation category using CASE after joining employee and project table.
+4. Create client region using CASE after joining project and client table.
+5. Create employee project status using CASE after joining employees and employee_projects.
+6. Create salary availability status using CASE after LEFT JOIN with salary table.
+7. Create department match status using CASE after LEFT JOIN with department table.
+8. Create project assignment status using CASE after LEFT JOIN with employee_projects table.
+9. Create client availability status using CASE after LEFT JOIN projects with clients.
+10. Create full employee profile status using CASE after joining employees, departments, salaries, and projects.
+
+---
+
+## X. `CASE` with `NULL` Handling
+
+1. Display employee name and department status as Missing if department is NULL, otherwise Available.
+2. Display employee name and city status as Missing if city is NULL, otherwise Available.
+3. Display employee name and salary status as Missing if salary is NULL, otherwise Available.
+4. Display employee name and bonus status as Missing if bonus is NULL, otherwise Available.
+5. Display employee name and job role status as Missing if job_role is NULL, otherwise Available.
+6. Display employee name and work mode status as Missing if work_mode is NULL, otherwise Available.
+7. Display employee name and status flag as Missing if status is NULL, otherwise Available.
+8. Display employee name and joining year status as Missing if joining_year is NULL, otherwise Available.
+9. Display employee name and performance score status as Missing if performance_score is NULL, otherwise Available.
+10. Display employee name and project count status as Missing if project_count is NULL, otherwise Available.
+
+---
+
+## Y. Nested `CASE` Practice
+
+1. Display employee name and nested salary-performance category: High Salary High Performer, High Salary Low Performer, Low Salary High Performer, Low Salary Low Performer.
+2. Display employee name and nested department-status category: IT Active, IT Inactive, Non-IT Active, Non-IT Inactive.
+3. Display employee name and nested city-workmode category: Pune Remote, Pune Non-Remote, Other Remote, Other Non-Remote.
+4. Display employee name and nested role-performance category: Manager High Performer, Manager Normal Performer, Staff High Performer, Staff Normal Performer.
+5. Display employee name and nested experience-salary category: Senior High Salary, Senior Low Salary, Junior High Salary, Junior Low Salary.
+6. Display employee name and nested age-performance category: Young High Performer, Young Normal, Senior High Performer, Senior Normal.
+7. Display employee name and nested bonus-status category: High Bonus Active, High Bonus Inactive, Low Bonus Active, Low Bonus Inactive.
+8. Display employee name and nested joining-status category: Old Active, Old Inactive, New Active, New Inactive.
+9. Display employee name and nested project-performance category: High Project High Performance, High Project Low Performance, Low Project High Performance, Low Project Low Performance.
+10. Display employee name and nested workmode-salary category: Remote High Salary, Remote Low Salary, Non-Remote High Salary, Non-Remote Low Salary.
+
+---
+
+## Z. Real-Time Business Scenario `CASE` Questions
+
+1. Display employee name and appraisal status as Eligible if performance score is greater than or equal to 85 and status is Active, otherwise Not Eligible.
+2. Display employee name and promotion status as Eligible if experience is greater than 5 and performance score is greater than 80, otherwise Not Eligible.
+3. Display employee name and retention risk as High Risk if performance score is less than 70 and status is Active, otherwise Low Risk.
+4. Display employee name and workload risk as High if project_count is greater than 4 and performance_score is less than 80, otherwise Normal.
+5. Display employee name and bonus payout category based on performance score, status, and department.
+6. Display employee name and salary correction flag if salary is below 40000 and performance score above 80.
+7. Display employee name and training need as Required if performance score below 75 or experience less than 3.
+8. Display employee name and leadership candidate flag if job_role contains Manager or performance score above 90.
+9. Display employee name and remote allowance eligibility if work_mode is Remote or Hybrid.
+10. Display employee name and HR review status if employee is Inactive or performance score below 70.
+
+---
+
+## AA. `CASE` with Multiple Columns
+
+1. Display employee name and employee type based on department, salary, and status.
+2. Display employee name and pay level based on salary, bonus, and performance score.
+3. Display employee name and career stage based on age, experience, and joining year.
+4. Display employee name and city-work category based on city and work_mode.
+5. Display employee name and employee health category based on project_count and performance_score.
+6. Display employee name and salary review category based on salary and performance_score.
+7. Display employee name and bonus review category based on bonus and status.
+8. Display employee name and department performance category based on department and performance_score.
+9. Display employee name and experience salary category based on experience_years and salary.
+10. Display employee name and project salary category based on project_count and salary.
+
+---
+
+## AB. `CASE` with `LIKE`
+
+1. Display employee name and name category as Starts With A if name starts with A, otherwise Other.
+2. Display employee name and name category as Ends With a if name ends with a, otherwise Other.
+3. Display employee name and name category as Contains sh if name contains sh, otherwise Other.
+4. Display employee name and role category as Developer Type if job_role contains Developer, otherwise Other.
+5. Display employee name and role category as Engineer Type if job_role contains Engineer, otherwise Other.
+6. Display employee name and role category as Analyst Type if job_role contains Analyst, otherwise Other.
+7. Display employee name and role category as Manager Type if job_role contains Manager, otherwise Other.
+8. Display employee name and city category as Pune City if city starts with P, otherwise Other City.
+9. Display employee name and city category as Mumbai City if city contains Mumbai, otherwise Other City.
+10. Display employee name and department category as Finance Type if department starts with F, otherwise Other.
+
+---
+
+## AC. `CASE` with `IN` / `NOT IN`
+
+1. Display employee name and core team flag as Core if department in IT and Finance, otherwise Non-Core.
+2. Display employee name and metro flag as Metro if city in Mumbai, Delhi, Bangalore, otherwise Non-Metro.
+3. Display employee name and technical flag as Technical if job_role in Developer, Data Engineer, DevOps Engineer, otherwise Non-Technical.
+4. Display employee name and office city flag as Office City if city in Pune and Mumbai, otherwise Other City.
+5. Display employee name and business department flag as Business if department in Sales and Finance, otherwise Other.
+6. Display employee name and non-core team flag as Non-Core if department not in IT and Finance, otherwise Core.
+7. Display employee name and non-metro flag as Non-Metro if city not in Mumbai, Delhi, Bangalore, otherwise Metro.
+8. Display employee name and non-technical flag as Non-Technical if job_role not in Developer, Data Engineer, DevOps Engineer, otherwise Technical.
+9. Display employee name and remote-friendly flag if work_mode in Remote and Hybrid, otherwise Office Only.
+10. Display employee name and special batch flag if joining_year in 2019, 2020, 2021, otherwise Other Batch.
+
+---
+
+## AD. `CASE` with `BETWEEN`
+
+1. Display employee name and salary band using BETWEEN for salary ranges.
+2. Display employee name and bonus band using BETWEEN for bonus ranges.
+3. Display employee name and age band using BETWEEN for age ranges.
+4. Display employee name and experience band using BETWEEN for experience ranges.
+5. Display employee name and performance band using BETWEEN for performance score ranges.
+6. Display employee name and joining batch using BETWEEN for joining year ranges.
+7. Display employee name and project band using BETWEEN for project_count ranges.
+8. Display employee name and salary flag as Mid Salary if salary between 40000 and 70000, otherwise Other.
+9. Display employee name and bonus flag as Mid Bonus if bonus between 3000 and 7000, otherwise Other.
+10. Display employee name and age flag as Mid Age if age between 28 and 35, otherwise Other.
+
+---
+
+## AE. `CASE` with Window Function Concept
+
+1. Display employee name, salary, and salary comparison as Above Department Average if salary is greater than department average.
+2. Display employee name, bonus, and bonus comparison as Above Department Bonus Average if bonus is greater than department average bonus.
+3. Display employee name, performance score, and performance comparison as Above Department Score Average if score is greater than department average score.
+4. Display employee name, salary, and company comparison as Above Company Average if salary is greater than overall average salary.
+5. Display employee name, bonus, and company bonus comparison as Above Company Bonus Average if bonus is greater than overall average bonus.
+6. Display employee name, experience, and experience comparison as Above Department Experience if experience is greater than department average experience.
+7. Display employee name, project count, and project comparison as Above Department Project Count if project_count is greater than department average project_count.
+8. Display employee name, age, and age comparison as Above City Age Average if age is greater than city average age.
+9. Display employee name, salary, and salary rank category as Top Salary if salary rank is within top 3.
+10. Display employee name, performance score, and performance rank category as Top Performer if performance rank is within top 5.
+
+---
+
+## AF. `CASE` in `HAVING` Aggregate Logic
+
+1. Display departments having more than 2 Active employees using CASE inside SUM.
+2. Display departments having more than 1 Inactive employee using CASE inside SUM.
+3. Display cities having more than 2 Remote employees using CASE inside SUM.
+4. Display cities having more than 2 Office employees using CASE inside SUM.
+5. Display departments having total High Salary employees greater than 2 using CASE.
+6. Display departments having total High Performers greater than 1 using CASE.
+7. Display cities having total Low Performers greater than 0 using CASE.
+8. Display work modes having total Active employees greater than 3 using CASE.
+9. Display departments having total Managers greater than 1 using CASE.
+10. Display cities having total Developers greater than 1 using CASE.
+
+---
+
+## AG. `CASE` with `DISTINCT`
+
+1. Count distinct departments for Active and Inactive employees separately using CASE.
+2. Count distinct cities for Remote and Office employees separately using CASE.
+3. Count distinct job roles for IT and Finance employees separately using CASE.
+4. Count distinct work modes for high salary and low salary employees separately using CASE.
+5. Count distinct joining years for high performers and low performers separately using CASE.
+6. Display distinct salary categories using CASE.
+7. Display distinct performance categories using CASE.
+8. Display distinct city zones using CASE.
+9. Display distinct role categories using CASE.
+10. Display distinct joining batches using CASE.
+
+---
+
+## AH. `CASE` with String Output Formatting
+
+1. Display employee name and readable salary message using CASE.
+2. Display employee name and readable bonus message using CASE.
+3. Display employee name and readable performance message using CASE.
+4. Display employee name and readable status message using CASE.
+5. Display employee name and readable work mode message using CASE.
+6. Display employee name and readable experience message using CASE.
+7. Display employee name and readable department message using CASE.
+8. Display employee name and readable city message using CASE.
+9. Display employee name and readable project workload message using CASE.
+10. Display employee name and readable joining year message using CASE.
+
+---
+
+## AI. Interview-Level `CASE` Questions
+
+1. Display employee name and final appraisal decision using salary, performance score, experience, and status.
+2. Display employee name and final promotion decision using performance score, experience, project count, and status.
+3. Display employee name and final bonus payout using department, performance score, salary, and status.
+4. Display employee name and employee risk category using status, performance score, project_count, and work_mode.
+5. Display employee name and salary revision percentage using salary, performance score, and department.
+6. Display department-wise active count, inactive count, high salary count, and low salary count using CASE.
+7. Display city-wise remote count, office count, hybrid count, and total employees using CASE.
+8. Display department-wise high performer count and low performer count using CASE.
+9. Display work mode-wise total high salary employees and low salary employees using CASE.
+10. Display joining batch-wise active employees and inactive employees using CASE.
+11. Display department-wise total salary for Active and Inactive employees separately using CASE.
+12. Display city-wise total bonus for Remote, Office, and Hybrid employees separately using CASE.
+13. Display department-wise average salary for High Performers and Normal Performers separately using CASE.
+14. Display city-wise maximum salary for Active and Inactive employees separately using CASE.
+15. Display department-wise minimum salary for Remote and Non-Remote employees separately using CASE.
+16. Display employee name and final employee grade using salary, bonus, experience, and performance score.
+17. Display employee name and final working model recommendation using city, work_mode, status, and performance score.
+18. Display employee name and final training category using performance score, experience, and department.
+19. Display employee name and final leadership readiness flag using role, experience, project_count, and performance_score.
+20. Display employee name and final salary correction status using salary, department, performance_score, and joining_year.
