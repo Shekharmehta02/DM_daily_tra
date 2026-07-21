@@ -2,6 +2,9 @@
 hyy
 
 use sm;
+hyy
+hyy
+hyy
 CREATE TABLE employee_limit_practice (
     emp_id INT,
     emp_name VARCHAR(100),
