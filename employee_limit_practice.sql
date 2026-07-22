@@ -241,5 +241,7 @@ limit 3;
 Select *from employee_limit_practice 
 order by salary desc
 limit 5;
-
+HYY
+HYY
+HY  
 
