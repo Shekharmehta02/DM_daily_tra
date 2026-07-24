@@ -1,4 +1,7 @@
 spark is very fynny lang
+
+hyy
+
 use sm;
 CREATE TABLE employee_limit_practice (
     emp_id INT,
@@ -242,5 +245,7 @@ limit 3;
 Select *from employee_limit_practice 
 order by salary desc
 limit 5;
+
+pura ho gaya
 
 
