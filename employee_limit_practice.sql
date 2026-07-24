@@ -1,3 +1,4 @@
+spark is very fynny lang
 use sm;
 CREATE TABLE employee_limit_practice (
     emp_id INT,
