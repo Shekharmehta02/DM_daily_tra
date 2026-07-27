@@ -1,4 +1,6 @@
 spark is very fynny lang
+i am lazy
+i am lazy
 use sm;
 CREATE TABLE employee_limit_practice (
     emp_id INT,
