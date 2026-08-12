@@ -1,6 +1,6 @@
 use sm;
 
-
+hello
 CREATE TABLE employee_case_practice (
     emp_id INT,
     emp_name VARCHAR(50),
