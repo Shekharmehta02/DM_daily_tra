@@ -1,5 +1,5 @@
 use sm;
-
+hyyy
 
 CREATE TABLE employee_case_practice (
     emp_id INT,
