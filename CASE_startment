@@ -471,7 +471,7 @@ SELECT
         END AS age_remark
 		FROM employee_case_practice;
 ---
-
+hyy
 ## D. Experience Category Using `CASE`
 
 1. Display employee name, experience years, and experience category as Junior if experience is less than 3, otherwise Experienced.
