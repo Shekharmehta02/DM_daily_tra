@@ -475,7 +475,26 @@ hyy
 ## D. Experience Category Using `CASE`
 
 1. Display employee name, experience years, and experience category as Junior if experience is less than 3, otherwise Experienced.
+SELECT
+    emp_name,
+    experience_years,
+    CASE
+        WHEN experience_years < 3 THEN 'Junior'
+        ELSE 'Experienced'
+        END AS experience_category
+		FROM employee_case_practice;
+
 2. Display employee name, experience years, and level as Beginner if experience <= 2, Intermediate if experience <= 5, Senior otherwise.
+SELECT
+    emp_name,
+    experience_years,
+    CASE
+        WHEN experience_years <= 2  THEN 'Beginner'
+        WHEN experience_years <= 5  THEN 'Intermediate'
+        ELSE 'Senior'
+        END AS level
+		FROM employee_case_practice;
+
 3. Display employee name, experience years, and grade as L1 if experience less than 3, L2 if experience less than 7, L3 otherwise.
 4. Display employee name, experience years, and experience status as High Experience if experience is greater than 8, otherwise Normal.
 5. Display employee name, experience years, and experience label as Exact 5 Years if experience equals 5, otherwise Other.
