@@ -50,6 +50,9 @@ INSERT INTO employee_case_practice VALUES
 
 #1. Display employee name, salary, and salary category as High if salary is greater than 70000, otherwise Low.
 SELECT
+
+
+
     emp_name,
     salary,
     CASE
