@@ -618,26 +618,127 @@ where  totle_sales > (select avg(totle_sales) from dept_sales);
 with  dept_sales as  
 (select department, sum(sale_amount) as totle_sales from employee_sales
 group by department)
-
 select * from dept_sales
 where  totle_sales > (select avg(totle_sales) from dept_sales);
+
 with  dept_sales as  
 (select department, sum(sale_amount) as totle_sales from employee_sales
 group by department)
-
 select * from dept_sales
 where  totle_sales > (select avg(totle_sales) from dept_sales);
 
+
 #3. Display product categories where total quantity is greater than average quantity of all categories.
+with  dept_sales as  
+(select product_category, sum(quantity) as totle_quantity from employee_sales
+group by product_category)
+select * from dept_sales
+where  totle_quantity > (select avg(totle_quantity) from dept_sales);
+
 #4. Display departments where maximum sale amount is greater than overall average sale amount.
+with  dept_sales as  
+(select department, max(sale_amount) as totle_sale_amount from employee_sales
+group by department)
+select * from dept_sales
+where  totle_sale_amount > (select avg(totle_sale_amount) from dept_sales);
+select*from employee_sales;
+
 #5. Display cities where minimum sale amount is less than overall minimum completed sale amount.
+WITH dept_sales AS (
+    SELECT city, MIN(sale_amount) AS min_sale_amount
+    FROM employee_sales
+    GROUP BY city
+)SELECT * FROM dept_sales WHERE min_sale_amount < (
+SELECT MIN(sale_amount) FROM employee_sales
+WHERE status = 'Completed' );
+
 #6. Display product categories where total bonus is greater than 15000 and count is greater than 2.
+WITH dept_sales AS (
+    SELECT product_category,count(*) as count , sum(bonus) AS sum_bonus
+    FROM employee_sales
+    GROUP BY product_category)
+    SELECT * FROM dept_sales WHERE sum_bonus > 15000 and count >2;
+
 #7. Display departments where average sale amount is greater than 40000 and total bonus is greater than 10000.
+WITH dept_sales AS (
+    SELECT department, avg(sale_amount) AS avg_sale_amount , sum(bonus) as total_bonus
+    FROM employee_sales
+    GROUP BY department)
+    SELECT * FROM dept_sales WHERE avg_sale_amount > 40000 and total_bonus >10000;
+    
 #8. Display cities where total sale amount is greater than 100000 and average quantity is greater than 3.
+WITH dept_sales AS (
+    SELECT city, sum(sale_amount) AS total_sale_amount , avg(quantity) as avg_quantity
+    FROM employee_sales
+    GROUP BY city)
+    SELECT * FROM dept_sales WHERE total_sale_amount > 100000 and avg_quantity >3;
+    
 #9. Display product categories where maximum bonus is greater than 5000 and minimum sale amount is greater than 20000.
+WITH dept_sales AS (
+    SELECT product_category, max(bonus) AS max_bonus , min(sale_amount) as min_sale_amount
+    FROM employee_sales
+    GROUP BY product_category)
+    SELECT * FROM dept_sales WHERE max_bonus >5000 and min_sale_amount >20000;
+    
 #10. Display years where total sale amount is greater than 300000 and total quantity is greater than 20.
+WITH dept_sales AS (
+    SELECT sale_year, sum(sale_amount) AS sum_sale_amount , sum(quantity) as sum_quantity
+    FROM employee_sales
+    GROUP BY sale_year)
+    SELECT * FROM dept_sales WHERE sum_sale_amount >300000 and sum_quantity >20;
+    
 #11. Display departments where count of completed records is greater than count of pending records.
+WITH dept_sales AS (
+    SELECT department,
+           COUNT(CASE WHEN status = 'Completed' THEN 1 END) AS completed_count,
+           COUNT(CASE WHEN status = 'Pending' THEN 1 END) AS pending_count
+    FROM employee_sales
+    GROUP BY department
+)
+SELECT *
+FROM dept_sales
+WHERE completed_count > pending_count;
+    
 #12. Display cities where total completed sale amount is greater than total pending sale amount.
+WITH dept_sales AS (
+    SELECT city,
+           sum(CASE  WHEN status = 'Completed' THEN sale_amount else 0 END) AS completed_sale_amount,
+           sum(CASE  WHEN status = 'Pending' THEN sale_amount else 0 END) AS pending_sale_amount
+    FROM employee_sales
+    GROUP BY city
+)
+SELECT *
+FROM dept_sales
+WHERE completed_sale_amount > pending_sale_amount;
+
 #13. Display product categories where total sale amount in 2025 is greater than total sale amount in 2024.
+WITH dept_sales AS (
+    SELECT product_category,
+           sum(CASE  WHEN sale_year = '2025' THEN sale_amount else 0 END) AS sale_amount_2025,
+           sum(CASE  WHEN sale_year = '2024' THEN sale_amount else 0 END) AS sale_amount_2024
+    FROM employee_sales
+    GROUP BY product_category
+)
+SELECT *
+FROM dept_sales
+WHERE sale_amount_2025 > sale_amount_2024;
+
 #14. Display departments where average bonus in 2025 is greater than average bonus in 2024.
+WITH dept_sales AS (
+    SELECT department,
+           sum(CASE  WHEN sale_year = '2025' THEN bonus else 0 END) AS sale_amount_2025,
+           sum(CASE  WHEN sale_year = '2024' THEN bonus else 0 END) AS sale_amount_2024
+    FROM employee_sales
+    GROUP BY department
+)
+SELECT *
+FROM dept_sales
+WHERE sale_amount_2025 > sale_amount_2024;
+
 #15. Display city-wise total sales where total sale amount is greater than 100000 and maximum sale amount is greater than 70000.
+WITH dept_sales AS (
+    SELECT city, sum(sale_amount) AS sum_sale_amount , max(sale_amount) as max_sale_amount
+    FROM employee_sales
+    GROUP BY city)
+    SELECT * FROM dept_sales WHERE sum_sale_amount >100000 and max_sale_amount >70000;
+    
