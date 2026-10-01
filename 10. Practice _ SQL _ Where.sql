@@ -41,60 +41,160 @@ INSERT INTO employee_details VALUES
 ## A. Basic `WHERE` with Comparison Operators
 
 #1. Display employees whose salary is greater than 60000.
+SELECT* from employee_details where salary >60000;
+
 #2. Display employees whose salary is less than 40000.
+SELECT* from employee_details where salary <40000;
+
 #3. Display employees whose salary is equal to 88000.
+SELECT* from employee_details where salary =88000;
+
 #4. Display employees whose salary is not equal to 88000.
+SELECT* from employee_details where salary !=88000;
+
 #5. Display employees whose salary is greater than or equal to 75000.
+SELECT* from employee_details where salary >=75000;
+
 #6. Display employees whose salary is less than or equal to 35000.
+SELECT* from employee_details where salary <=35000;
+
 #7. Display employees whose bonus is greater than 6000.
+SELECT* from employee_details where bonus >=6000;
+
 #8. Display employees whose bonus is less than 2500.
+SELECT* from employee_details where bonus <=2500;
+
 #9. Display employees whose bonus is equal to 9500.
+SELECT* from employee_details where bonus =9500;
+
 #10. Display employees whose bonus is not equal to 9500.
+SELECT* from employee_details where bonus !=9500;
+
 #11. Display employees whose age is greater than 32.
+SELECT* from employee_details where age >32;
+
 #12. Display employees whose age is less than 27.
+SELECT* from employee_details where age <27;
+
 #13. Display employees whose age is equal to 29.
+SELECT* from employee_details where age =29;
+
 #14. Display employees whose age is not equal to 29.
+SELECT* from employee_details where age !=29;
+
 #15. Display employees whose experience years are greater than 5.
+SELECT* from employee_details where experience_years >5;
+
 #16. Display employees whose experience years are less than 3.
+SELECT* from employee_details where experience_years <3;
+
 #17. Display employees whose experience years are equal to 7.
+SELECT* from employee_details where experience_years =7;
+
 #18. Display employees whose experience years are not equal to 7.
+SELECT* from employee_details where experience_years !=7;
+
 #19. Display employees who joined after 2020.
+SELECT* from employee_details where joining_year >2020;
+
 #20. Display employees who joined before 2018.
+SELECT* from employee_details where joining_year <2018;
+
 #21. Display employees who joined in or after 2021.
+SELECT* from employee_details where joining_year >=2021;
+
 #22. Display employees who joined in or before 2017.
+SELECT* from employee_details where joining_year <=2017;
+
 #23. Display employees whose emp_id is greater than 115.
+SELECT* from employee_details where emp_id > 115;
+
 #24. Display employees whose emp_id is less than 106.
+SELECT* from employee_details where emp_id < 106;
+
 #25. Display employees whose emp_id is equal to 120.
+SELECT* from employee_details where emp_id =120;
+
 
 ---
 
 ## B. `WHERE` with Text Conditions
 
-1. Display employees from IT department.
-2. Display employees not from IT department.
-3. Display employees from Finance department.
-4. Display employees not from Finance department.
-5. Display employees from HR department.
-6. Display employees not from HR department.
-7. Display employees from Sales department.
-8. Display employees not from Sales department.
-9. Display employees from Pune city.
-10. Display employees not from Pune city.
-11. Display employees from Mumbai city.
-12. Display employees not from Mumbai city.
-13. Display employees from Delhi city.
-14. Display employees not from Delhi city.
-15. Display employees from Bangalore city.
-16. Display employees not from Bangalore city.
-17. Display employees whose status is Active.
-18. Display employees whose status is Inactive.
-19. Display employees whose work mode is Remote.
-20. Display employees whose work mode is Office.
-21. Display employees whose work mode is Hybrid.
-22. Display employees whose job role is Developer.
-23. Display employees whose job role is Manager.
-24. Display employees whose job role is Analyst.
-25. Display employees whose job role is Data Engineer.
+#1. Display employees from IT department.
+SELECT* from employee_details where department ='It';
+
+#2. Display employees not from IT department.
+SELECT* from employee_details where department !='It';
+
+#3. Display employees from Finance department.
+SELECT* from employee_details where department ='Finance';
+
+#4. Display employees not from Finance department.
+SELECT* from employee_details where department !='Finance';
+
+#5. Display employees from HR department.
+SELECT* from employee_details where department ='HR';
+
+#6. Display employees not from HR department.
+SELECT* from employee_details where department !='HR';
+
+#7. Display employees from Sales department.
+SELECT* from employee_details where department ='Sales';
+
+#8. Display employees not from Sales department.
+SELECT* from employee_details where department !='Sales';
+
+#9. Display employees from Pune city.
+SELECT* from employee_details where city ='pune';
+
+#10. Display employees not from Pune city.
+SELECT* from employee_details where city !='pune';
+
+#11. Display employees from Mumbai city.
+SELECT* from employee_details where city ='Mumbai';
+
+#12. Display employees not from Mumbai city.
+SELECT* from employee_details where city !='Mumbai';
+
+#13. Display employees from Delhi city.
+SELECT* from employee_details where city ='Delhi';
+
+#14. Display employees not from Delhi city.
+SELECT* from employee_details where city !='Delhi';
+
+#15. Display employees from Bangalore city.
+SELECT* from employee_details where city ='Bangalore';
+
+#16. Display employees not from Bangalore city.
+SELECT* from employee_details where city !='Bangalore';
+
+#17. Display employees whose status is Active.
+SELECT* from employee_details where status ='Active';
+
+#18. Display employees whose status is Inactive.
+SELECT* from employee_details where status ='Inactive';
+
+#19. Display employees whose work mode is Remote.
+SELECT* from employee_details where work_mode ='Remote';
+
+#20. Display employees whose work mode is Office.
+SELECT* from employee_details where work_mode ='Office';
+
+#21. Display employees whose work mode is Hybrid.
+SELECT* from employee_details where work_mode ='Hybrid';
+
+#22. Display employees whose job role is Developer.
+SELECT* from employee_details where job_role ='Developer';
+
+#23. Display employees whose job role is Manager.
+SELECT* from employee_details where job_role ='Manager';
+
+#24. Display employees whose job role is Analyst.
+SELECT* from employee_details where job_role ='Analyst';
+
+#25. Display employees whose job role is Data Engineer.
+SELECT* from employee_details where job_role ='Data Engineer';
+
 
 ---
 
