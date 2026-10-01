@@ -43,7 +43,6 @@ INSERT INTO employee_case_practice VALUES
 # Chunk 1: Questions 1 to 100
 ---
 
-
 ## A. Basic Salary Category Using `CASE`
 
 #1. Display employee name, salary, and salary category as High if salary is greater than 70000, otherwise Low.
