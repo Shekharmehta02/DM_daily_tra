@@ -100,76 +100,164 @@ INSERT INTO employee_details VALUES
 
 ## C. `WHERE` with `AND`
 
-1. Display employees from IT department and salary greater than 70000.
-2. Display employees from IT department and city Pune.
-3. Display employees from IT department and work mode Remote.
-4. Display employees from Finance department and salary greater than 55000.
-5. Display employees from Finance department and city Mumbai.
-6. Display employees from Finance department and work mode Remote.
-7. Display employees from HR department and status Active.
-8. Display employees from HR department and age greater than 30.
-9. Display employees from Sales department and salary greater than 50000.
-10. Display employees from Sales department and status Active.
-11. Display employees from Pune city and salary greater than 50000.
-12. Display employees from Mumbai city and salary greater than 60000.
-13. Display employees from Delhi city and bonus greater than 5000.
-14. Display employees from Bangalore city and experience greater than 5.
-15. Display employees whose status is Active and work mode is Remote.
-16. Display employees whose status is Active and salary greater than 65000.
-17. Display employees whose status is Inactive and salary less than 50000.
-18. Display employees whose work mode is Hybrid and city Pune.
-19. Display employees whose work mode is Office and department HR.
-20. Display employees whose work mode is Remote and department Finance.
-21. Display employees whose job role is Developer and status Active.
-22. Display employees whose job role is Manager and salary greater than 70000.
-23. Display employees whose age is greater than 30 and experience greater than 6.
-24. Display employees whose bonus is greater than 5000 and salary greater than 60000.
-25. Display employees whose joining year is before 2020 and status Active.
+#1. Display employees from IT department and salary greater than 70000.
+SELECT* from employee_details where department ='IT' and salary >70000;
+
+#2. Display employees from IT department and city Pune.
+SELECT* from employee_details where department ='IT' and city ='Pune';
+
+#3. Display employees from IT department and work mode Remote.
+SELECT* from employee_details where department ='IT' and work_mode ='Remote';
+
+#4. Display employees from Finance department and salary greater than 55000.
+SELECT* from employee_details where department ='Finance' and salary >55000;
+
+#5. Display employees from Finance department and city Mumbai.
+SELECT* from employee_details where department ='Finance' and city ='Mumbai';
+
+#6. Display employees from Finance department and work mode Remote.
+SELECT* from employee_details where department ='Finance' and work_mode ='Remote';
+
+#7. Display employees from HR department and status Active.
+SELECT* from employee_details where department ='HR' and status ='Active';
+
+#8. Display employees from HR department and age greater than 30.
+SELECT* from employee_details where department ='HR' and age >30;
+
+#9. Display employees from Sales department and salary greater than 50000.
+SELECT* from employee_details where department ='Sales' and salary >50000;
+
+#10. Display employees from Sales department and status Active.
+SELECT* from employee_details where department ='Sales' and status >'Active';
+
+#11. Display employees from Pune city and salary greater than 50000.
+SELECT* from employee_details where city ='Pune' and salary >50000;
+
+#12. Display employees from Mumbai city and salary greater than 60000.
+SELECT* from employee_details where city ='Pune' and salary >50000;
+
+#13. Display employees from Delhi city and bonus greater than 5000.
+SELECT* from employee_details where city ='Delhi' and bonus >5000;
+
+#14. Display employees from Bangalore city and experience greater than 5.
+SELECT* from employee_details where city ='Bangalore' and experience_years >5;
+
+#15. Display employees whose status is Active and work mode is Remote.
+SELECT* from employee_details where status ='Active' and work_mode ='Remote';
+
+#16. Display employees whose status is Active and salary greater than 65000.
+SELECT* from employee_details where status ='Active' and salary >65000;
+
+#17. Display employees whose status is Inactive and salary less than 50000.
+SELECT* from employee_details where status ='Inactive' and salary <50000;
+
+#18. Display employees whose work mode is Hybrid and city Pune.
+SELECT* from employee_details where work_mode ='Hybrid' and city ='Pune';
+
+#19. Display employees whose work mode is Office and department HR.
+SELECT* from employee_details where work_mode ='Office' and department ='HR';
+
+#20. Display employees whose work mode is Remote and department Finance.
+SELECT* from employee_details where work_mode ='Remote' and department ='Finance';
+
+#21. Display employees whose job role is Developer and status Active.
+SELECT* from employee_details where job_role ='Developer' and status ='Active';
+
+#22. Display employees whose job role is Manager and salary greater than 70000.
+SELECT* from employee_details where job_role ='Manager' and salary >70000;
+
+#23. Display employees whose age is greater than 30 and experience greater than 6.
+SELECT* from employee_details where age >30 and experience_years >6;
+
+#24. Display employees whose bonus is greater than 5000 and salary greater than 60000.
+SELECT* from employee_details where bonus >5000 and salary >60000;
+
+#25. Display employees whose joining year is before 2020 and status Active.
+SELECT* from employee_details  where joining_year <2020 and status ='Active';
 
 ---
 
 ## D. `WHERE` with `OR`
 
-1. Display employees from IT department or Finance department.
-2. Display employees from HR department or Sales department.
-3. Display employees from Pune city or Mumbai city.
-4. Display employees from Delhi city or Bangalore city.
-5. Display employees whose status is Active or salary greater than 80000.
-6. Display employees whose status is Inactive or bonus less than 2500.
-7. Display employees whose work mode is Remote or work mode is Hybrid.
-8. Display employees whose work mode is Office or city Pune.
-9. Display employees whose job role is Developer or Manager.
-10. Display employees whose job role is Analyst or Data Engineer.
-11. Display employees whose age is less than 26 or salary greater than 80000.
-12. Display employees whose bonus is greater than 8000 or experience greater than 9.
-13. Display employees whose joining year is before 2018 or city Bangalore.
-14. Display employees whose salary is less than 40000 or bonus greater than 9000.
-15. Display employees whose department is Sales or work mode Remote.
-16. Display employees whose city is Nagpur or department HR.
-17. Display employees whose emp_id is less than 105 or emp_id greater than 118.
-18. Display employees whose age is greater than 35 or joining year is before 2017.
-19. Display employees whose salary is greater than 85000 or job role is Team Lead.
-20. Display employees whose bonus is less than 2000 or status Inactive.
+#1. Display employees from IT department or Finance department.
+SELECT* from employee_details  where department ='IT' or department ='Finance';
+
+#2. Display employees from HR department or Sales department.
+SELECT* from employee_details  where department ='HR' or department ='Sales';
+
+#3. Display employees from Pune city or Mumbai city.
+SELECT* from employee_details  where city ='Pune' or city ='Mumbai';
+
+#4. Display employees from Delhi city or Bangalore city.
+SELECT* from employee_details  where city ='Delhi' or city ='Bangalore';
+
+#5. Display employees whose status is Active or salary greater than 80000.
+SELECT* from employee_details  where status ='Active' or salary >80000;
+
+#6. Display employees whose status is Inactive or bonus less than 2500.
+SELECT* from employee_details  where status ='Inactive' or bonus <2500;
+
+#7. Display employees whose work mode is Remote or work mode is Hybrid.
+SELECT* from employee_details  where status ='Inactive' or bonus <2500;
+
+#8. Display employees whose work mode is Office or city Pune.
+SELECT* from employee_details  where work_mode ='Office' or city ='Pune';
+
+#9. Display employees whose job role is Developer or Manager.
+SELECT* from employee_details  where job_role ='Developer' or job_role ='Developer';
+
+#10. Display employees whose job role is Analyst or Data Engineer.
+SELECT* from employee_details  where job_role ='Analyst' or job_role ='Data Engineer';
+
+#11. Display employees whose age is less than 26 or salary greater than 80000.
+SELECT* from employee_details  where age <26 or salary >80000;
+
+#12. Display employees whose bonus is greater than 8000 or experience greater than 9.
+SELECT* from employee_details  where bonus >8000 or experience_years >9;
+
+#13. Display employees whose joining year is before 2018 or city Bangalore.
+SELECT* from employee_details  where joining_year <2018 or city ='Bangalore';
+
+#14. Display employees whose salary is less than 40000 or bonus greater than 9000.
+SELECT* from employee_details  where salary <40000 or bonus >9000;
+
+#15. Display employees whose department is Sales or work mode Remote.
+SELECT* from employee_details  where department ='Sales' or work_mode ='Remote';
+
+#16. Display employees whose city is Nagpur or department HR.
+SELECT* from employee_details  where city ='Nagpur' or department ='HR';
+
+#17. Display employees whose emp_id is less than 105 or emp_id greater than 118.
+SELECT* from employee_details  where emp_id <105 or emp_id >118;
+
+#18. Display employees whose age is greater than 35 or joining year is before 2017.
+SELECT* from employee_details  where age >35 or joining_year <2017;
+
+#19. Display employees whose salary is greater than 85000 or job role is Team Lead.
+SELECT* from employee_details  where salary >85000 or job_role ='Team Lead';
+
+#20. Display employees whose bonus is less than 2000 or status Inactive.
+SELECT* from employee_details  where bonus <2000 or status ='Inactive';
 
 ---
 
 ## E. `WHERE` with `NOT`
 
-1. Display employees who are not Active.
-2. Display employees who are not Inactive.
-3. Display employees who are not from Pune.
-4. Display employees who are not from Mumbai.
-5. Display employees who are not from IT department.
-6. Display employees who are not from Finance department.
-7. Display employees whose work mode is not Remote.
-8. Display employees whose work mode is not Office.
-9. Display employees whose job role is not Developer.
-10. Display employees whose job role is not Manager.
-11. Display employees whose salary is not greater than 60000.
-12. Display employees whose bonus is not less than 3000.
-13. Display employees whose age is not less than 30.
-14. Display employees whose experience is not greater than 5.
-15. Display employees whose joining year is not before 2020.
+#1. Display employees who are not Active.
+#2. Display employees who are not Inactive.
+#3. Display employees who are not from Pune.
+#4. Display employees who are not from Mumbai.
+#5. Display employees who are not from IT department.
+#6. Display employees who are not from Finance department.
+#7. Display employees whose work mode is not Remote.
+#8. Display employees whose work mode is not Office.
+#9. Display employees whose job role is not Developer.
+#10. Display employees whose job role is not Manager.
+#11. Display employees whose salary is not greater than 60000.
+#12. Display employees whose bonus is not less than 3000.
+#13. Display employees whose age is not less than 30.
+#14. Display employees whose experience is not greater than 5.
+#15. Display employees whose joining year is not before 2020.
 
 ---
 
